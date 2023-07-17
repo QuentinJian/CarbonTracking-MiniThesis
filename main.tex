@@ -1,0 +1,156 @@
+%%%%%%預先準備（不需修改）%%%%%%
+\documentclass[12pt]{article}
+\input{preamble}
+
+%%%%%%%%自訂設置（請填入）%%%%%%%%
+\centerhead{Android 碳足跡追蹤器開發} %中上方頁首，請填入小論文主題名稱
+\pagenumbering{gobble} %移除頁碼
+%%%%%%%%文件內容開始%%%%%%%%%%%%
+\begin{document}
+\coverpage
+    {資訊類} %eg.工程技術類
+    {Android 碳足跡追蹤器開發} %填入主題名稱
+    %填入作者。若作者只有 1 位 或 2 位，則將 {} 內留白即可
+    {01 簡仲研。桃園市立武陵高級中學。二年十五班} %第一作者
+    {02 李健宇。桃園市立武陵高級中學。二年十五班} %第二作者
+    {03 許鈞奕。桃園市立武陵高級中學。二年十五班} %第三作者
+    {} %指導老師
+    
+\section{前言}
+    \subsection{研究動機}
+        \hhtext {
+        最近看新聞時很難不注意到和全球氣候變遷相關的報導，而在生活中也逐漸感受到氣候變遷帶來的影響，例如以前在四五月多時仍不會高到要開冷氣，但是在今年四五月時已經便已經常感到滿頭大汗，並在教室開冷氣。
+        }
+        \hhtext{在現代社會中，每個人在不管是消費、移動、或者是使用各類電器用品中，都會產生無形的碳排放，但是產生的碳排放中有許多其實可以藉由改變習慣等方式來減少，而本研究是想藉由利用MIT AppInventor 2簡單、程式容易編寫的特性開發製作一款可以紀錄生活中的碳排放，幫助普通人減少碳排放的手機程式。}
+        \hhtext{
+        手機程式中預計會有計算供人計算碳足跡並儲存每次計算後的結果，以及輸入數值時手機的時間，依據類別來比較當周以及前一周生活中減少或增加的碳排放量。希望藉由能開發出一個實用的碳足跡計算器。
+        }
+    \subsection{研究目的}
+        \subsubsection{了解製作生活碳足跡紀錄APP需要的功能}
+        \subsubsection{了解各類碳足跡來源}
+        \subsubsection{研究碳足跡計算方法}
+        \subsubsection{製作一個碳排放紀錄App}
+        
+\section{文獻探討}
+    \subsection{生活碳足跡對減緩氣候變遷影響}
+    \hhtext{生活中個人碳足跡對於能否使幫助減緩全球氣候變遷，從Ryu Koide et al. (2021) 的論文中可看出經過評估後個人可藉由改變生活習慣，能使其生活碳排放減少許多碳排放。要使人能產生對環境友善的生活習慣可藉由習慣形成的方法進行培養，因為習慣與一個人在生活中的各種表現十分相關，而生活環境中的可以藉由各種動作或藉由各種提示會使人在潛意識中傾向去做特定的動作，進而培養習慣 (David T. Neal et al. 2011)，因此開發一個能在適當時間提醒並訂定目標的生活碳足跡紀錄工具可以讓人更容易的改變生活方式，進而減少碳足跡。}
+    
+    \subsection{生活碳排放及計算方式}
+    \hhtext{從行政院環境保護署的資料中我們可以看出，對於生活中各類使用的產品以及搭乘的交通工具種類，各自有不同的單位，但是計算結果都以公斤二氧化碳當量(kgCO$_2$e)為單位，對於生活中使用的產品，在產品製造過程中產生的碳排放為產品在其生命週期中乘上一排放係數即可，而二氧化碳當量代表比較溫室氣體相對於二氧化碳造成輻射之單位(廖弓普 2013)。}
+    \subsection{AppInventor 程式資料儲存： TinyDB}
+    \hhtext{在用AppInventor編寫的手機程式使用的變數再關閉後便會消失，而TinyDB可讓程式在重新起動後繼續存取之前所寫的資料，TinyDB不是關聯式資料庫，資料庫儲存的每個項目有「標籤」(tag)「名稱」(key)「對應值」(value)，只能用名稱(key)取出值。參考文華高中BookStack(2019)。}
+\section{研究方法}
+    \subsection{研究流程}
+    \begin{figure}[H] %H代表強制圖片放在原始碼對應的相關位置，htbp代表由 LaTeX 彈性調整
+    \captionsetup{format=hang, singlelinecheck=off}
+    \centering %圖片置中
+    \vspace{0pt}
+    \begin{minipage}[t]{0.8\textwidth}
+    \caption{以下是我們碳足跡軟體設計的流程圖}
+    \centering %圖片在 minipage 置中\
+    \includegraphics[width=1\textwidth]{研究流程.png}\\[12pt]
+    %這裡可以調整相對於 minipage 圖片的比例
+    資料來源：作者自行繪製
+    \label{fig.flowchart}
+    \end{minipage}
+    \end{figure}
+    
+    \subsection{應用程式開發規劃}
+    
+    \begin{figure}[H] %H代表強制圖片放在原始碼對應的相關位置，htbp代表由 LaTeX 彈性調整
+    \captionsetup{format=hang, singlelinecheck=off}
+    \centering %圖片置中
+    \vspace{0pt}
+    \begin{minipage}[t]{0.8\textwidth}
+    \caption{以下是我們開發碳足跡軟體的流程圖}
+    \centering %圖片在 minipage 置中\
+    \includegraphics[width=1\textwidth]{流程圖.png}\\[12pt]
+    %這裡可以調整相對於 minipage 圖片的比例
+    資料來源：作者自行繪製
+    \label{fig.plan}
+    \end{minipage}
+    \end{figure}
+
+    \hhtext{我們編寫的手機程式決定以圖二的架構來編寫，程式包含讓人以進行活動的類別來計算產生的碳排放的功能，除了計算並記錄的功能外程式有一個介面專門用來讓使用者分別檢視以週和月來查看並比較自己過去和現在產生的碳排放。}
+
+    \subsection{應用程式開發}
+    \hhtext{我們在設計規劃完應用程式的大致功能後，我們便開始進行程式開發，開發過程共有三大目標}
+    \subsubsection{實作應用程式功能}
+    \subsubsection{編寫各個應用程式介面間的交互邏輯}
+    \subsubsection{碳足跡資料儲存及圖表繪製程式編寫}
+    
+\section{研究分析與結果}
+    \subsection{應用程式概覽}
+    \hhtext{我們的手機程式共分成兩大主要功能}
+    \subsubsection{登錄並計算碳排放資料}
+    \subsubsection{查看碳足跡統計資料}
+    \hhtext{剛啟動程式時，首先使用者會看到的是如圖三的應用程式初始介面，在這個介面中使用者有三個選項，分別為:新增碳足跡、查看日碳足跡、查看月碳足跡及應用程式說明。}
+    \begin{figure}[H] %H代表強制圖片放在原始碼對應的相關位置，htbp代表由 LaTeX 彈性調整
+        \captionsetup{format=hang, singlelinecheck=off}
+        \centering %整組合併的圖片置中
+        \vspace{0pt}
+        \begin{minipage}[t]{0.45\textwidth} %可調整子圖區域大小，但所有 minipage 總合不能超過 1
+            \centering %在圖片的 minipage 內置中
+            \caption{應用程式初始頁面}
+            \includegraphics[width=0.7\textwidth]{首頁.png}\\[12pt]
+            %圖片相對於 minipage 要多寬
+            資料來源：作者自行截圖
+            \label{fig.2}
+        \end{minipage}
+        \begin{minipage}[t]{0.45\textwidth}
+            \centering
+            \caption{新增碳足跡資料}
+            \includegraphics[width=0.7\textwidth]{新增資料.png}\\[12pt]
+            資料來源：作者自行截圖
+            \label{fig.3}
+        \end{minipage}
+    \end{figure}
+    \hhtext{當使用者要輸入統計資料，便會進入如圖四的碳足跡資料新增介面，在這個介面中，使用者會被要求選擇類別，而根據選擇的類別，上方輸入碳足跡的輸入方塊會根據選擇的類別而改變為相對應的輸入單位提示，在使用者邊輸入時，程式會同時會計算並在儲存按鈕上的灰色框中顯示出以二氧化碳當量CO$_2$e 計算出的輸出單位。}
+
+    \begin{figure}[H] %H代表強制圖片放在原始碼對應的相關位置，htbp代表由 LaTeX 彈性調整
+    \captionsetup{format=hang, singlelinecheck=off}
+    \centering %圖片置中
+    \vspace{0pt}
+    \begin{minipage}[t]{0.8\textwidth}
+    \caption{每日資料檢視}
+    \centering %圖片在 minipage 置中\
+    \includegraphics[width=0.45\textwidth]{每日資料檢視.png}\\[12pt]
+    %這裡可以調整相對於 minipage 圖片的比例
+    資料來源：作者自行截圖
+    \label{fig.viewdata}
+    \end{minipage}
+    \end{figure}
+    
+    \hhtext{當使用者要檢視以日為單位的碳足跡排放資料時，便會進到如圖五的碳足跡檢視介面，在這個介面中使用者預設會看到一個圓餅圖看出當天各類別的碳足跡占比，在這介面中使用者也可以檢視過去的碳足跡資料。}
+    \subsection{程式運作-程式資料處理}
+    \begin{figure}[H] %H代表強制圖片放在原始碼對應的相關位置，htbp代表由 LaTeX 彈性調整
+    \captionsetup{format=hang, singlelinecheck=off}
+    \centering %圖片置中
+    \vspace{0pt}
+    \begin{minipage}[t]{0.8\textwidth}
+    \caption{使用者資料處理程式(部分)}
+    \centering %圖片在 minipage 置中\
+    \includegraphics[width=0.7\textwidth]{碳足跡資料儲存程式.png}\\[12pt]
+    %這裡可以調整相對於 minipage 圖片的比例
+    資料來源：作者自行截圖
+    \label{fig.dataprogram}
+    \end{minipage}
+    \end{figure}
+    \hhtext{在處理前面圖三介面的使用者輸入資料時，我們會先將輸入的資料根據相對應的類別乘上計算公式並將計算後的數值放到 Textbox1 也就是儲存按鈕上的灰色框中供使用者檢視，當使用者按下圖三畫面中的儲存資料按鈕後，便會進行圖六的資料處裡程式，程式先會將計算數值、種類、當天第n比做成一個Dictionary方便計算圖表時提取資料，再使用TinyDB元件製作一個TinyDB項目進行資料儲存，我們利用日期作為標籤(tag)、對應值(valueTostore)則用先前製作出來的Dictonary儲存，因此之後在提取資料時需要新建一個空白Dictionary來提取項目中的資料。}
+
+    \subsection{應用程式測試}
+    \hhtext{在程式編寫完後，我們有實際安裝應用程式到自己的手機上進行測試，一開始實際使用時覺得功能都運作良好，基本圖表繪製、儲存功能都可正常使用，但是在使用過程中，我們發現這個程式雖然能這正常使用，但是在紀錄碳足跡的功能，我們一致的認為單位輸入有些麻煩，因此使用者輸入的資料會有些簡略，像是要計算搭車產生的碳足跡，需要輸入搭車的距離，使用者在使用時通常不會輸入精確的數據，導致結果和實際差異大，因此會影響應用程式的統計以及比較功能。}
+\section{研究結論與建議}
+\hhtext{雖然我們成功開發出整個程式，但考慮到碳足跡的計算並無如以上所述容易計算，需要考眾多因素，導致我們輸入的值只是估計的理論值，況且我們也沒有辦法得知其他碳排放行為的碳足跡，使得個人碳足跡排放量無法被全部考量。但是若我們能夠確切的得知所有行為的準確碳排放量或得知使用者的資料庫，程式只要過優化，像是:跟全球平均做比對、提醒使用者哪個方面的碳排放行為可以減少，我們相信還是有可用之處。在市面上我們發現了Klima-Live carbon neutral這款App跟我們的理念幾乎相同，且這款App還會建議使用者可以做出哪些改善來降低碳排放，明顯符合我們的理念。}
+
+\section{參考文獻}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%此區塊為參考文獻，請直接編輯 ref.tex 檔案%
+
+\begin{enumerate}[(1)]
+\input{ref}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

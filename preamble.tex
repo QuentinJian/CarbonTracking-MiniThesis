@@ -1,0 +1,353 @@
+%%%%%%%%%%%字型與中文設定%%%%%%%%%%%
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{[PMingLiU.ttf]}
+\setCJKmonofont{[PMingLiU.ttf]}
+\setCJKsansfont{[PMingLiU.ttf]}
+\setmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{[times.ttf]}
+\setsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{[times.ttf]}
+\setmonofont{[times.ttf]}
+\newfontfamily\ming[AutoFakeBold=3,AutoFakeSlant=.2]{[PMingLiU.ttf]}
+\newfontfamily\timesnew[AutoFakeBold=3,AutoFakeSlant=.2]{[times.ttf]}
+\XeTeXlinebreaklocale "zh" %這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt %這兩行一定要加，中文才能自動換行
+\usepackage{newtxtext,newtxmath}
+
+%%%%%%%%%%%邊界設定、文字格式%%%%%%%%%%%
+\usepackage[margin=2cm, a4paper]{geometry}
+\usepackage{indentfirst} 
+\setlength{\parindent}{2em}
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.0}
+\setlength{\parskip}{1em}
+\usepackage[utf8]{inputenc}
+\usepackage{changepage} %adjustwidth
+
+%%%%%%%%%%%頁首頁尾%%%%%%%%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand\headrulewidth{0pt}
+\lhead{}
+%小論文篇名的部分放在 main 供修改
+\rhead{}
+\lfoot{}
+\cfoot{\fontsize{10pt}{\baselineskip}\selectfont \thepage}
+\rfoot{}
+
+% 定義 \XeTeX 符號:
+\def\reflect#1{{\setbox0=\hbox{#1}\rlap{\kern0.5\wd0
+  \special{x:gsave}\special{x:scale -1 1}}\box0 \special{x:grestore}}}
+\def\XeTeX{\leavevmode
+  \setbox0=\hbox{X\lower.5ex\hbox{\kern-.15em\reflect{E}}\kern-.1667em \TeX}%
+  \dp0=0pt\ht0=0pt\box0 }
+\def\XeLaTeX{\leavevmode
+  \setbox0=\hbox{X\lower.5ex\hbox{\kern-.15em\reflect{E}}\kern-.0833em \LaTeX}%
+  \dp0=0pt\ht0=0pt\box0 }
+
+%%%%%%%%%%%自定義中文數字%%%%%%%%%%%
+\newcommand{\CCNumberA}[1]{\ifcase#1\or{壹}\or{貳}\or{參}\or{肆}\or{伍}\or{陸}\or{柒}\or{捌}\or{玖}\or{拾}
+    \or{拾壹}\or{拾貳}\or{拾參}\or{拾肆}\or{拾伍}\or{拾陸}\or{拾柒}\or{拾捌}\or{拾玖}\or{貳拾}
+    \or{貳拾壹}\or{貳拾貳}\or{貳拾參}\or{貳拾肆}\or{貳拾伍}\or{貳拾陸}\or{貳拾柒}\or{貳拾捌}\or{貳拾玖}\or{參拾}
+    \fi}
+\newcommand{\CCNumberB}[1]{\ifcase#1\or{一}\or{二}\or{三}\or{四}\or{五}\or{六}\or{七}\or{八}\or{九}\or{十}
+     \or{十一}\or{十二}\or{十三}\or{十四}\or{十五}\or{十六}\or{十七}\or{十八}\or{十九}\or{二十}
+     \or{二十一}\or{二十二}\or{二十三}\or{二十四}\or{二十五}\or{二十六}\or{二十七}\or{二十八}\or{二十九}\or{三十}
+     \or{三十一}\or{三十二}\or{三十三}\or{三十四}\or{三十五}\or{三十六}\or{三十七}\or{三十八}\or{三十九}\or{四十}
+     \or{四十一}\or{四十二}\or{四十三}\or{四十四}\or{四十五}\or{四十六}\or{四十七}\or{四十八}\or{四十九}\or{五十}
+     \or{五十一}\or{五十二}\or{五十三}\or{五十四}\or{五十五}\or{五十六}\or{五十七}\or{五十八}\or{五十九}\or{六十}
+     \or{六十一}\or{六十二}\or{六十三}\or{六十四}\or{六十五}\or{六十六}\or{六十七}\or{六十八}\or{六十九}\or{七十}   
+    \fi}
+
+%%%%%%%%%%%章節階層設定%%%%%%%%%%%
+\usepackage{titlesec,titletoc}
+\setcounter{secnumdepth}{4} %設定計數器使 paragraph 也有編號
+
+\titleformat{\section}                      % #1.改變 section 的指令 
+[hang]                                      % #2.將標號及標題視為同一個段落
+{\normalfont}                               % #3.標號標題的字形格式
+{\\ \CCNumberA{\arabic{section}}、}         % #4.標號
+{0pc}                                       % #5.標號標題間隔
+{}                                          % #6.標題前之指令
+[]                                          % #7.標題後之指令、選擇性輸入
+
+\titleformat{\subsection}                   % #1.改變 subsection 的指令 
+[hang]                                      % #2.將標號及標題視為同一個段落
+{\normalfont}                               % #3.標號標題的字形格式
+{\\ \CCNumberB{\arabic{subsection}}、}      % #4.標號
+{0pc}                                       % #5.標號標題間隔
+{}                                          % #6.標題前之指令
+[]                                          % #7.標題後之指令、選擇性輸入
+   
+\titleformat{\subsubsection}                % #1.改變 subsubsection 的指令 
+[hang]                                      % #2.將標號及標題視為同一個段落
+{\normalfont}                               % #3.標號標題的字形格式
+{（\CCNumberB{\arabic{subsubsection}}）}  % #4.標號
+{0pc}                                       % #5.標號標題間隔
+{}                                          % #6.標題前之指令
+[]                                          % #7.標題後之指令、選擇性輸入
+
+\titleformat{\paragraph}                    % #1.改變 paragraph 的指令 
+[hang]                                      % #2.將標號及標題視為同一個段落
+{\normalfont}                               % #3.標號標題的字形格式
+{\arabic{paragraph}、}                      % #4.標號
+{0pc}                                       % #5.標號標題間隔
+{}                                          % #6.標題前之指令
+[]                                          % #7.標題後之指令、選擇性輸入
+
+\titlespacing{\section} {0em}{0em}{0em}
+\titlespacing{\subsection} {2em}{0em}{0em}
+\titlespacing{\subsubsection} {4em}{0em}{0em}
+\titlespacing{\paragraph} {6em}{0em}{0em}
+
+%%%%%%%%%%%原文照刊環境中文處理（\begin{verbatim}）%%%%%%%%%%%
+\makeatletter
+\def\verbatim@font{\rmfamily} %如果使用roman字体族，将sffamily改成rmfamily
+\makeatother
+%%%%%%%%%%%列表%%%%%%%%%%%
+\usepackage{enumerate}
+
+%%%%%%%%%%%超連結%%%%%%%%%%%
+\usepackage{xurl}
+\usepackage[bookmarksopen,pdfstartview=FitH,breaklinks=true,
+linkcolor=black,anchorcolor=black,citecolor=black,hidelinks]{hyperref}
+\urlstyle{same}
+%%%%%%%%%%%圖片%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{subfigure}
+
+%%%%%%%%%%%翻譯中文%%%%%%%%%%%
+\renewcommand{\tablename}{表}
+\renewcommand{\figurename}{圖}
+\renewcommand{\thefigure}{\CCNumberB{\arabic{figure}}}
+%%%%%%%%%%%本模版獨特的 new command%%%%%%%%%%%
+%打 LaTeX 打不出來的特殊符號
+\newcommand\apo{\textquotesingle}
+
+\newcommand{\coverpage}[6]
+{
+	\begin{titlepage}
+		\begin{center}
+			投稿類別：#1\\[7cm]
+			篇名：\\
+			#2\\[6cm]
+			作者：\\
+		    \if\relax\detokenize{#3}\relax
+            
+            \else
+            #3 \\
+            \fi
+		    \if\relax\detokenize{#4}\relax
+            
+            \else
+            #4 \\
+            \fi
+		    \if\relax\detokenize{#5}\relax
+            
+            \else
+            #5 \\
+            \fi
+			\vfill
+			指導老師：\\
+			#6
+			\end{center}
+	\end{titlepage}
+}
+
+%頁首
+\newcommand{\centerhead}[1]
+{
+    \chead{\fontsize{10pt}{\baselineskip}\selectfont #1}
+}
+
+\newcommand{\h}[1]{\section{#1}}        %令section=h
+\newcommand{\hh}[1]{\subsection{#1}}    %令subsection=hh
+\newcommand{\hhh}[1]{\subsubsection{#1}}%令subsubsection=hhh
+\newcommand{\hhhh}[1]{\paragraph{#1}}   %令paragraph=hhhh
+
+%段落內容及文字縮排(content & text)
+\newcommand{\hhtext}[1]
+{
+    \if\relax\detokenize{#1}\relax
+    
+    \else
+        \begin{adjustwidth}{2em}{0em}
+        \hspace*{21pt}#1
+        \end{adjustwidth}
+    \fi
+}
+\newcommand{\subsectiontext}[1]
+{
+    \if\relax\detokenize{#1}\relax
+    
+    \else
+        \begin{adjustwidth}{2em}{0em}
+        \hspace*{21pt}#1
+        \end{adjustwidth}
+    \fi
+}
+\newcommand{\hhhtext}[1]
+{
+    \if\relax\detokenize{#1}\relax
+    
+    \else
+        \begin{adjustwidth}{4em}{0em}
+        \hspace*{21pt}#1
+        \end{adjustwidth}
+    \fi
+}
+\newcommand{\subsubsectiontext}[1]
+{
+    \if\relax\detokenize{#1}\relax
+    
+    \else
+        \begin{adjustwidth}{4em}{0em}
+        \hspace*{21pt}#1
+        \end{adjustwidth}
+    \fi
+}
+\newcommand{\hhhhtext}[1]
+{
+    \if\relax\detokenize{#1}\relax
+    
+    \else
+        \begin{adjustwidth}{6em}{0em}
+        \hspace*{21pt}#1
+        \end{adjustwidth}
+    \fi
+}
+
+%%%%%%%%%%%%%%%Reference%%%%%%%%%%%%%%%%%%%%%
+%無特定格式
+\newcommand{\nonetype}[1]
+{
+    #1
+}
+%書籍類
+\newcommand{\zhbook}[4]
+{
+    #1（#2）。\textbf{#3}。#4。
+}
+\newcommand{\enbook}[4]
+{
+    \if\relax\detokenize{#1}\relax
+        \textit{#3}. (#2). #4.
+    \else
+        #1. (#2). \textit{#3}. #4.
+    \fi
+}
+\newcommand{\ezhbook}[4]
+{
+    #1（#2）。\textbf{#3}。\url{#4}
+}
+\newcommand{\eenbook}[4]
+{
+    #1. (#2). \textit{#3}. \url{#4}
+}
+%期刊論文類
+\newcommand{\zhjournal}[7]
+{
+    \if\relax\detokenize{#5}\relax
+        #1（#2）。#3。\textbf{#4，#6}，#7。
+    \else
+         #1（#2）。#3。\textbf{#4，#5}（#6），#7。
+    \fi
+}
+\newcommand{\enjournal}[7]
+{
+    \if\relax\detokenize{#5}\relax
+        #1. (#2). #3. \textit{#4, #6}, #7.
+    \else
+        #1. (#2). #3. \textit{#4,#5}(#6), #7.
+    \fi
+}
+\newcommand{\ezhjournal}[8]
+{
+    \if\relax\detokenize{#5}\relax
+        #1（#2）。#3。\textbf{#4，#6}，#7。\url{#8}
+    \else
+        #1（#2）。#3。\textbf{#4，#5}（#6），#7。\url{#8}
+    \fi
+}
+\newcommand{\eenjournal}[8]
+{
+    \if\relax\detokenize{#5}\relax
+        #1. (#2). #3. \textit{#4, #6}, #7. \url{#8}
+    \else
+        #1. (#2). #3. \textit{#4,#5}(#6), #7. \url{#8}
+    \fi
+}
+%文集論文類
+\newcommand{\zhanthology}[7]
+{
+    #1（#2）。#3。#4：\textbf{#5}（#6）。#7。
+}
+\newcommand{\enanthology}[7]
+{
+    #1.(#2). #3. #4. \textit{#5}, (#6). #7.
+}
+%博（碩）士論文
+\newcommand{\zhthesis}[5]
+{
+    #1（#2）。\textbf{#3}。#4：#5。
+}
+\newcommand{\enthesis}[5]
+{
+    #1. (#2).\textit{#3}. #4: #5.
+}
+\newcommand{\ezhthesis}[6]
+{
+    #1（#2）。\textbf{#3}。#4：#5。\url{#6}
+}
+\newcommand{\eenthesis}[6]
+{
+    #1. (#2).\textit{#3}. #4: #5. \url{#6}
+}
+%報紙文章
+\newcommand{\zhnewspaper}[5]
+{
+    #1（#2）。#3。\textbf{#4}，#5。
+}
+\newcommand{\ennewspaper}[5]
+{
+    #1. (#2). #3. \textit{#4}, #5.
+}
+\newcommand{\ezhnewspaper}[5]
+{
+    #1（#2）。#3。\textbf{#4}。\url{#5}
+}
+\newcommand{\eennewspaper}[5]
+{
+    #1. (#2). #3. \textit{#4}. \url{#5}
+}
+%法規
+\newcommand{\law}[2]
+{
+    #1（#2）。
+}
+%網路相關資源
+\newcommand{\simpleinternet}[4]
+{
+    #1（#2）。#3。\url{#4}
+}
+\newcommand{\internet}[4]
+{
+    #1（#2）。#3。\url{#4}
+}
+\newcommand{\nodateinternet}[4]
+{
+    #1（無日期）。#2。#3，取自 \url{#4}
+}
+\newcommand{\youtube}[4]
+{
+    #1（#2）。#3［影片］。YouTube。\url{#4}
+}
+\newcommand{\facebook}[5]
+{
+    #1（#2）。#3［#4］。Facebook。\url{#5}
+}
+\newcommand{\blog}[4]
+{
+    #1（#2）。#3［部落格文章］。\url{#4}
+}
